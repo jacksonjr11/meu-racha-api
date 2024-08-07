@@ -5,11 +5,11 @@ import { Connection } from 'src/core/database/config/datatabse.config';
 export const RachaRepositoryInterfaceToken = Symbol("RachaRepository");
 
 export interface RachaRepository {
-  save(): Promise<RachaEntity>;
-  update(): Promise<RachaEntity>;
-  delete(): Promise<void>;
-  findAll(): Promise<RachaEntity[]>;
-  findById(): Promise<RachaEntity>;
+  save(payload: any): Promise<RachaEntity>;
+  update(id:string, payload: any): Promise<RachaEntity>;
+  delete(id:string): Promise<void>;
+  findAll(filter?: any): Promise<RachaEntity[]>;
+  findById(id:string): Promise<RachaEntity>;
 }
 
 @Injectable()
@@ -18,14 +18,14 @@ export default class RachaRepositoryImpl implements RachaRepository {
   constructor(private readonly connection: Connection) { }
 
   findAll(): Promise<RachaEntity[]> {
-    return this.connection.query<RachaEntity>('SELECT * FROM public.racha');
+    return this.connection.query<RachaEntity>("SELECT * FROM public.racha racha where racha.nome");
   }
 
-  save(): Promise<RachaEntity> {
+  save(payload: any): Promise<RachaEntity> {
     throw new Error('Method not implemented.');
   }
 
-  update(): Promise<RachaEntity> {
+  update(id: string, payload: any): Promise<RachaEntity> {
     throw new Error('Method not implemented.');
   }
   

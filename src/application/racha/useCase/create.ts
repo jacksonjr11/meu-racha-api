@@ -9,6 +9,6 @@ export class RachaCreateUserCase {
   ) { }
 
   async execute(): Promise<RachaEntity> {
-    return await this.rachaRepository.save();
+    return await this.rachaRepository.save(null);
   }
 }
