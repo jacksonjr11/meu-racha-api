@@ -2,9 +2,9 @@ import { Controller, Delete, Get, Patch, Post, Put } from '@nestjs/common';
 import { RachaFilterUseCase } from '../useCase/filter';
 import { RachaEntity } from '../racha.entity';
 
-@Controller("racha")
+@Controller('racha')
 export class RachaController {
-  constructor(private readonly findRachaUseCase: RachaFilterUseCase) { }
+  constructor(private readonly findRachaUseCase: RachaFilterUseCase) {}
 
   @Get()
   filter(): Promise<RachaEntity[]> {

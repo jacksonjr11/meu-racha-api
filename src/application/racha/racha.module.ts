@@ -2,11 +2,14 @@ import RachaRepositoryImpl, { RachaRepositoryInterfaceToken } from './repository
 import { Module } from '@nestjs/common';
 import { RachaController } from './controller/racha.controller';
 import { RachaFilterUseCase } from './useCase/filter';
+import { RachaCreateUserCase } from './useCase/create/create';
 
 @Module({
   imports: [],
   controllers: [RachaController],
-  providers: [RachaFilterUseCase,
+  providers: [
+    RachaFilterUseCase,
+    RachaCreateUserCase,
     {
       provide: RachaRepositoryInterfaceToken,
       useClass: RachaRepositoryImpl

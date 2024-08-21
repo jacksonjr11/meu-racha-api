@@ -2,7 +2,7 @@ import 'dotenv/config'
 import { Injectable, Inject, Module, Global } from '@nestjs/common';
 import { Pool, Connection as ConnectionLib, QueryResult } from 'pg';
 
-const PG_CONNECTION = 'PG_CONNECTION';
+export const PG_CONNECTION = 'PG_CONNECTION';
 
 const dbProvider = {
   provide: PG_CONNECTION,
