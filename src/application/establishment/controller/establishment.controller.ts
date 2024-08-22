@@ -1,8 +1,11 @@
 import { Controller, Delete, Get, Patch, Post, Put } from '@nestjs/common';
+import { AcceptFixedScheduleUseCase } from '../useCase/accept-fixed-schedule/accept-fixed-shedule';
 
 @Controller('establishment')
-export class RachaController {
-  constructor(private readonly findEsablishmentUseCase: any) {}
+export class EstablishmentController {
+  constructor(
+    private readonly findEsablishmentUseCase: AcceptFixedScheduleUseCase,
+  ) {}
 
   @Get()
   filter(): Promise<any[]> {
