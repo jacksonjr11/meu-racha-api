@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { Connection } from 'src/core/database/config/datatabse.config';
+import { Connection } from 'database/config/datatabse.config';
 
 export const EstablishmentRepositoryInterfaceToken = Symbol('RachaRepository');
 

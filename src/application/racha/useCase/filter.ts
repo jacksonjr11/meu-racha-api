@@ -1,17 +1,17 @@
-import { Inject } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
 import {
   RachaRepository,
   RachaRepositoryInterfaceToken,
 } from '../repository/racha.repository';
-import { RachaEntity } from '../racha.entity';
 
+@Injectable()
 export class RachaFilterUseCase {
   constructor(
     @Inject(RachaRepositoryInterfaceToken)
-    private rachaRepository: RachaRepository,
+    private readonly repository: RachaRepository,
   ) {}
 
-  async execute(): Promise<RachaEntity[]> {
-    return await this.rachaRepository.findAll();
+  async execute(): Promise<any[]> {
+    return await this.repository.findAll();
   }
 }

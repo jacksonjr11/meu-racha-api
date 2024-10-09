@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { UserEntity } from '../user.entity';
-import { Connection } from 'src/core/database/config/datatabse.config';
+import { Connection } from 'database/config/datatabse.config';
 
 export const UserRepositoryInterfaceToken = Symbol("UserRepository");
 

@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
-import { DbModule } from './core/database/config/datatabse.config';
 import { ApplicationModule } from './application/application.module';
+import { DbModule } from 'database/database.provider';
 
 @Module({
   imports: [DbModule, ApplicationModule],
