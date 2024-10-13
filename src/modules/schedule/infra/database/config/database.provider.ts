@@ -22,7 +22,6 @@ export const databaseProviders = [
   },
 ];
 
-@Global()
 @Module({
   providers: [...databaseProviders],
   exports: [...databaseProviders],

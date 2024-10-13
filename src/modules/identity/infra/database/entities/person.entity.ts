@@ -17,6 +17,9 @@ export class PersonEntity {
   @Column({ name: 'birthdate', type: 'date' })
   birthdate: string;
 
+  @Column({ name: 'email', type: 'varchar' })
+  email: string;
+
   @Column({ name: 'identity', type: 'varchar' })
   identity: string;
 
