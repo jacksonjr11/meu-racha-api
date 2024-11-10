@@ -32,3 +32,36 @@ service:
       receivers: [otlp]
       processors: [batch]
       exporters: [debug]
+# receivers:
+#   otlp:
+#     protocols:
+#       grpc:
+#         endpoint: 0.0.0.0:4317
+#       http:
+#         endpoint: 0.0.0.0:4318
+
+# exporters:
+#   debug:
+#     verbosity: detailed
+
+#   # Exportador para o Jaeger usando Thrift via HTTP
+#   jaeger:
+#     endpoint: "http://jaeger:14268/api/traces"  # Porta e caminho corretos para enviar traces usando HTTP/Thrift
+
+# processors:
+#   batch: {}
+
+# extensions:
+#   health_check: {}
+
+# service:
+#   extensions: [health_check]
+#   pipelines:
+#     traces:
+#       receivers: [otlp]
+#       processors: [batch]
+#       exporters: [debug, jaeger]
+#     metrics:
+#       receivers: [otlp]
+#       processors: [batch]
+#       exporters: [debug]
