@@ -11,7 +11,6 @@ const IdentityDatabaseConfig: TypeOrmModuleOptions = {
   port: Number(process.env.DB_PORT),
   schema: 'identity',
   entities: [__dirname + '/../**/*.entity{.ts,.js}'],
-  synchronize: true,
 };
 
 @Module({
