@@ -1,28 +1,32 @@
 import { NodeSDK } from '@opentelemetry/sdk-node';
-import { getNodeAutoInstrumentations } from '@opentelemetry/auto-instrumentations-node';
 import {
   PeriodicExportingMetricReader,
   ConsoleMetricExporter,
 } from '@opentelemetry/sdk-metrics';
 import { diag, DiagConsoleLogger, DiagLogLevel } from '@opentelemetry/api';
 import { OTLPTraceExporter } from '@opentelemetry/exporter-trace-otlp-grpc';
+import { ExpressInstrumentation } from '@opentelemetry/instrumentation-express';
+import { NestInstrumentation } from '@opentelemetry/instrumentation-nestjs-core';
+import { HttpInstrumentation } from '@opentelemetry/instrumentation-http';
 
 diag.setLogger(new DiagConsoleLogger(), DiagLogLevel.ERROR);
 
+const exporterOptions = {
+  url: 'http://jaeger:4317',
+};
+
+const traceExporter = new OTLPTraceExporter(exporterOptions);
+
 export const OpenTelemetryConfig = new NodeSDK({
-  serviceName: 'Tetse',
-  traceExporter: new OTLPTraceExporter({
-    url: 'http://otel-collector:4317',
-    compression: 'gzip' as any,
-  }),
+  serviceName: 'teste',
+  traceExporter,
   metricReader: new PeriodicExportingMetricReader({
     exporter: new ConsoleMetricExporter(),
   }),
   instrumentations: [
-    getNodeAutoInstrumentations(),
-    // new NestInstrumentation(),
-    // new HttpInstrumentation(),
-    // new ExpressInstrumentation(),
+    new NestInstrumentation(),
+    new HttpInstrumentation(),
+    new ExpressInstrumentation(),
   ],
 });
 
