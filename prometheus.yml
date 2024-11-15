@@ -1,0 +1,9 @@
+global:
+  scrape_interval: 5s
+scrape_configs:
+  - job_name: "meu-racha"
+    scheme: "http"
+    static_configs:
+      - targets: [ "meu-racha-api:3000" ]
+        labels:
+          application: "meu-racha"

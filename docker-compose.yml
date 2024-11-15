@@ -5,6 +5,9 @@ networks:
     driver: bridge
 volumes:
   postgresql_data:
+  prometheus_data:
+  meu_racha_api_data:
+  grafana_data:
 services:
   app:
     container_name: meu-racha-api
@@ -51,5 +54,26 @@ services:
       - "8081:16686"  # Jaeger UI
       - "4318:4318"
       - "4317:4317"
+    networks:
+      - meu-racha-network
+  prometheus:
+    image: prom/prometheus
+    container_name: prometheus
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+      - prometheus_data:/prometheus
+    ports:
+      - "9090:9090"
+    networks:
+      - meu-racha-network
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana
+    volumes:
+      - ./grafana/provisioning/datasources:/etc/grafana/provisioning/datasources
+      - grafana_data:/var/lib/grafana
+    restart: unless-stopped
+    ports:
+      - "4000:4000"
     networks:
       - meu-racha-network
