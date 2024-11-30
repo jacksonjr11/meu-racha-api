@@ -17,3 +17,15 @@ CREATE TABLE "identity"."user"  (
 	CONSTRAINT user_id PRIMARY KEY (id),
     FOREIGN KEY (person_id) REFERENCES "identity"."person"(id)
 );
+
+CREATE TABLE schedule.schedule  (
+	id uuid NOT NULL,
+	CONSTRAINT schedule_id PRIMARY KEY (id)
+);
+
+CREATE TABLE management.racha (
+	id uuid NOT NULL,
+	schedule_id uuid NULL,
+	CONSTRAINT racha_id PRIMARY KEY (id),
+    FOREIGN KEY (schedule_id) REFERENCES schedule.schedule(id)
+);
