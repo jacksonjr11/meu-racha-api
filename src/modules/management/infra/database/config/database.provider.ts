@@ -9,9 +9,8 @@ const ManagementDatabaseConfig: TypeOrmModuleOptions = {
   database: process.env.DB_NAME,
   password: process.env.DB_PASSWORD,
   port: Number(process.env.DB_PORT),
-  schema: 'identity',
+  schema: 'management',
   entities: [__dirname + '/../**/*.entity{.ts,.js}'],
-  synchronize: true,
 };
 
 @Module({
