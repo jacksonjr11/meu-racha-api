@@ -1,4 +1,4 @@
-import { Global, Module } from '@nestjs/common';
+import { Module } from '@nestjs/common';
 import 'dotenv/config';
 import { DataSource } from 'typeorm';
 
@@ -14,7 +14,6 @@ export const databaseProviders = [
         password: process.env.DB_PASSWORD,
         port: Number(process.env.DB_PORT),
         entities: [__dirname + '/../**/*.entity{.ts,.js}'],
-        synchronize: true,
       });
 
       return dataSource.initialize();

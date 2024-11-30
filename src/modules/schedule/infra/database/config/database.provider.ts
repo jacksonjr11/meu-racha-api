@@ -1,29 +1,19 @@
-import { Global, Module } from '@nestjs/common';
 import 'dotenv/config';
-import { DataSource } from 'typeorm';
+import { Module } from '@nestjs/common';
+import { TypeOrmModule, TypeOrmModuleOptions } from '@nestjs/typeorm';
 
-export const databaseProviders = [
-  {
-    provide: DataSource,
-    useFactory: async () => {
-      const dataSource = new DataSource({
-        type: 'postgres',
-        username: process.env.DB_USER,
-        host: process.env.DB_SERVER,
-        database: process.env.DB_NAME,
-        password: process.env.DB_PASSWORD,
-        port: Number(process.env.DB_PORT),
-        entities: [__dirname + '/../**/*.entity{.ts,.js}'],
-        synchronize: true,
-      });
-
-      return dataSource.initialize();
-    },
-  },
-];
+const ScheduleDatabaseConfig: TypeOrmModuleOptions = {
+  type: 'postgres',
+  username: process.env.DB_USER,
+  host: process.env.DB_SERVER,
+  database: process.env.DB_NAME,
+  password: process.env.DB_PASSWORD,
+  port: Number(process.env.DB_PORT),
+  schema: 'schedule',
+  entities: [__dirname + '/../**/*.entity{.ts,.js}'],
+};
 
 @Module({
-  providers: [...databaseProviders],
-  exports: [...databaseProviders],
+  imports: [TypeOrmModule.forRoot(ScheduleDatabaseConfig)],
 })
-export class DbModule {}
+export class ScheduleDatabaseModule {}
